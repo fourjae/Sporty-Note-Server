@@ -41,7 +41,7 @@ public class Initializer implements CommandLineRunner {
 //        gymService.save(new GymDto("의정부헬스장", "37.5", "128", "의정부시", "무슨구", "땡땡동"));
 //        gymService.save(new GymDto("선릉헬스장", "37.5", "126", "서울시", "강남구", "선릉동"));
 //        userBasicSetup();
-//          machineSetup();//<-----------서버 시작시 실행
+          machineSetup();//<-----------서버 시작시 실행
 //        machineLocationSetup();
 //        noteSetup();
 ////        printUserFavorite();
@@ -158,7 +158,6 @@ public class Initializer implements CommandLineRunner {
 
     void machineSetup() {
         List<Machine> machineList = new ArrayList<>();
-
         //운동기구 리스트
         machineList.add(Machine.createMachine("어시스트 딥스" , "Assisted Chest Dip (kneeling)" , "가슴" , "00091101/00091101_medium1.png" , "00091101/00091101_medium2.png" , "video/00091201_video1.mp4"));
         machineList.add(Machine.createMachine("어시스트 풀업" , "Assisted Pull-up" , "등" , "00171101/00171101_medium1.png" , "00171101/00171101_medium2.png" , "video/00171201_video1.mp4"));
@@ -294,14 +293,6 @@ public class Initializer implements CommandLineRunner {
         }
         //RoutineDto routineDto = new RoutineDto( "lower", machines);
         //routineService.addRoutine("12312312",routineDto);
-    }
-
-    void recordSetup() {
-        recordService.addRecord(new RecordDto("12312312", 1L, 1, 10, 10, true));
-        recordService.addRecord(new RecordDto("45645645", 1L, 2, 15, 10, true));
-        recordService.addRecord(new RecordDto("78978978", 1L, 3, 20, 10, true));
-        recordService.addRecord(new RecordDto("12312312", 1L, 4, 25, 10, true));
-
     }
 
 
