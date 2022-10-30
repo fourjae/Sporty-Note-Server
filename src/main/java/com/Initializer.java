@@ -158,7 +158,6 @@ public class Initializer implements CommandLineRunner {
 
     void machineSetup() {
         List<Machine> machineList = new ArrayList<>();
-
         //운동기구 리스트
         machineList.add(Machine.createMachine("어시스트 딥스" , "Assisted Chest Dip (kneeling)" , "가슴" , "00091101/00091101_medium1.png" , "00091101/00091101_medium2.png" , "video/00091201_video1.mp4"));
         machineList.add(Machine.createMachine("어시스트 풀업" , "Assisted Pull-up" , "등" , "00171101/00171101_medium1.png" , "00171101/00171101_medium2.png" , "video/00171201_video1.mp4"));
