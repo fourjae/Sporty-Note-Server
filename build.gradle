@@ -108,3 +108,9 @@ test {
 bootRun {
 	systemProperty "jasypt.encryptor.password", findProperty("jasypt.encryptor.password")
 }
+
+bootJar {
+	from('.ebextensions') {
+		into('.ebextensions' )
+	}
+}
