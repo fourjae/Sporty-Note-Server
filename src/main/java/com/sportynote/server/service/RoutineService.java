@@ -70,9 +70,9 @@ public class RoutineService {
 
 
     /** 내 루틴 조회 Read */
-    public Set<String> myRoutine(String userid) {
+    public List<String> myRoutine(String userid) {
         List<Routine> RoutineLists = routineRepository.findByUserId(userid);
-        Set<String> RoutineNames = new TreeSet<>();
+        List<String> RoutineNames = new ArrayList<>();
         for(Routine routine : RoutineLists){
             RoutineNames.add(routine.getRoutineName());
         }
