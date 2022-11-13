@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Repository
@@ -63,6 +64,11 @@ public class NoteNodeSetRepository {
                 nodeMap.put(key, new ArrayList<>());
             }
             nodeMap.get(key).add(nodeDto);
+        }
+        if(nodeMap.size()==0){
+            nodeMap.put(NodeType.ETC, new ArrayList<>());
+            nodeMap.get(NodeType.ETC).add(new NodeDto("[일반]", machineIdx,0L,NodeType.ETC, "#CCCCCC",
+                    "곧 추가 될 예정입니다. 다른 운동기구 팁을 참고해주세요. 감사합니다.", 0f, 0f, LocalDateTime.now(), ""));
         }
         noteDto.setNodeDtos(nodeMap);
 
