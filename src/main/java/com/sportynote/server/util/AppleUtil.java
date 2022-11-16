@@ -33,7 +33,7 @@ import java.util.*;
 
 // 애플 로그인 util
 public class AppleUtil {
-    private static final Logger logger = LoggerFactory.getLogger(AppleUtil.class);
+   /* private static final Logger logger = LoggerFactory.getLogger(AppleUtil.class);
     private static ObjectMapper objectMapper = new ObjectMapper();
 
     public String createClientSecret(String teamId, String clientId, String keyId, String keyPath, String authUrl) throws NoSuchAlgorithmException {
@@ -142,6 +142,6 @@ public class AppleUtil {
         }
 
         return null;
-    }
+    }*/
 
 }

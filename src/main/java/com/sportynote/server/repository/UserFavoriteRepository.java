@@ -23,36 +23,38 @@ public class UserFavoriteRepository {
         em.remove(userFavorite);
         return userFavorite.getIdx();
     }
+
     public List<UserFavorite> findAll() {
         return em.createQuery("select uf from UserFavorite uf", UserFavorite.class)
                 .getResultList();
     }
+
     public List<UserFavorite> findAllByUserId(String userId) {
         return em.createQuery("select uf from UserFavorite uf " +
                         "where uf.userBasic.userId=: userId and uf.deleted = false", UserFavorite.class)
-                .setParameter("userId",userId)
+                .setParameter("userId", userId)
                 .getResultList();
     }
+
     public UserFavorite findById(Long userFavoriteIdx) {
         return em.find(UserFavorite.class, userFavoriteIdx);
     }
 
     public Optional<UserFavorite> findByUserId(String userId) {
-        Optional<UserFavorite> userFavorite = null;
+        Optional<UserFavorite> userFavorite = Optional.empty();
         try {
             userFavorite = Optional.ofNullable(em.createQuery("select uf from UserFavorite uf where uf.userBasic.userId =: userId", UserFavorite.class)
                     .setParameter("userId", userId)
                     .getSingleResult());
         } catch (NoResultException e) {
             userFavorite = Optional.empty();
-        } finally {
-            return userFavorite;
         }
+        return userFavorite;
 
     }
 
     public Optional<UserFavorite> findByUserIdAndMachineId(String userId, Long machineId) {
-        Optional<UserFavorite> userFavorite = null;
+        Optional<UserFavorite> userFavorite = Optional.empty();
         try {
             userFavorite = Optional.ofNullable(
                     em.createQuery(
@@ -63,8 +65,7 @@ public class UserFavoriteRepository {
                             .getSingleResult());
         } catch (NoResultException e) {
             userFavorite = Optional.empty();
-        } finally {
-            return userFavorite;
         }
+        return userFavorite;
     }
 }

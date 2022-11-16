@@ -8,6 +8,7 @@ import com.sportynote.server.repository.query.*;
 import com.sportynote.server.security.JwtTokenProvider;
 import com.sportynote.server.service.*;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +19,8 @@ import java.util.*;
 @Component
 @AllArgsConstructor
 @Transactional
+@Slf4j
+
 public class Initializer implements CommandLineRunner {
     //ServerApplication.class를 실행할때 매번 같이 실행되는 클래스입니다.
     //생성목적 : 예시 db를 실행시마다 넣어주는 용도이므로 매 실행시마다 Table을 create로 설정해주셔야 데이터 중복이 안됩니다.
@@ -32,10 +35,12 @@ public class Initializer implements CommandLineRunner {
     private final RecordService recordService;
     private final JwtTokenProvider jwtTokenProvider;
 
+
     @Override
     public void run(String... args) throws Exception {
         //하단 메소드 안의 내용들을 주석처리하면 실행시 데이터가 주입되지 않습니다.
-        System.out.println("Initializer.java : CommandLineRunner 실행");
+//        System.out.println("Initializer.java : CommandLineRunner 실행");
+        log.warn("Initializer.java : CommandLineRunner 실행");
 //        gymService.save(new GymDto("바디스페이스", "37", "128", "서울시", "강남구", "선릉로"));
 //        gymService.save(new GymDto("정원헬스장", "36", "127", "서울시", "성북구", "안암로"));
 //        gymService.save(new GymDto("의정부헬스장", "37.5", "128", "의정부시", "무슨구", "땡땡동"));
@@ -51,10 +56,12 @@ public class Initializer implements CommandLineRunner {
 //        System.out.println(jwtTokenProvider.createAccessToken("12312312"));
 //        nodeSetDto();//<-----------서버 시작시 실행
 //        System.out.println("실행 완료되었습니다.");
-        System.out.println(new Date());
+//        System.out.println(new Date());
+        log.warn("서버 실행 날짜={}", new Date());
+
     }
 
-    private void nodeSetDto() {
+   /* private void nodeSetDto() {
         //작업장1
         noteService.addNoteNodeSet(new NodeSetCreateDto("어시스트 풀업",NodeType.SHOULDER,"#99FF99","올라갈때 어깨가 웅크리지 않도록 한다.", 0F, 0F, LocalDateTime.now(), ""));
         noteService.addNoteNodeSet(new NodeSetCreateDto("바벨 벤치프레스",NodeType.GRIP,"#0000FF","어깨너비의 1.5배로 잡는다. 인체 구조상 그립 너비가 넓어야 가슴 근육을 사용하게 된다. 좁으면 손목,팔꿈치에 무리가 간다.", 0F, 0F, LocalDateTime.now(), ""));
@@ -125,9 +132,9 @@ public class Initializer implements CommandLineRunner {
     }
 
     private void noteSetup() {
-        /***
+        *//***
          * 노트한 기구 추가
-         */
+         *//*
         noteService.addNoteNode("12312312",new NodeCreateDto(1L, 1L, NodeType.CHEST, "Orange", "12312312의 벤치프레스 Orange 내용1입니다", 0F, 0F, "사진주소1"));
         noteService.addNoteNode("12312312",new NodeCreateDto(1L, 1L, NodeType.CHEST, "Orange", "12312312의 벤치프레스 Orange 내용2입니다", 0F, 0F, "사진주소2"));
         noteService.addNoteNode("12312312",new NodeCreateDto(2L, 2L, NodeType.BACK, "Red", "12312312의 랫풀다운 Red 내용입니다", 13.5F, 20F, "사진주소3"));
@@ -146,9 +153,9 @@ public class Initializer implements CommandLineRunner {
 
     }
 
-    /**
+    *//**
      * 즐겨찾기 출력
-     */
+     *//*
     void printUserFavorite() {
         List<UserFavorite> userFavoriteMachines = userFavoriteRepository.findAll();
         for (UserFavorite userFavorite : userFavoriteMachines) {
@@ -294,6 +301,6 @@ public class Initializer implements CommandLineRunner {
         //RoutineDto routineDto = new RoutineDto( "lower", machines);
         //routineService.addRoutine("12312312",routineDto);
     }
-
+*/
 
 }
