@@ -79,7 +79,7 @@ public class RecordController {
     @DeleteMapping("/delete")
     public ResponseEntity<?> deleteRecords(@ApiIgnore @CurrentUser UserBasicPrincipal userBasicPrincipal, @RequestBody RecordDto recordDto) throws URISyntaxException {
         result = (recordService.deleteRecord(userBasicPrincipal.getUserId(), recordDto)) ? "success" : "failed";
-        status_code = result == "success" ? 201 : 200;
+        status_code = "success".equals(result) ? 201 : 200;
         return ResponseEntity.status(HttpStatus.valueOf(status_code)).body(result);
     }
 

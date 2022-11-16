@@ -61,10 +61,15 @@ public class AuthService {
                 .toUri();
         ResponseEntity<GetKakaoOauthTokenResponseDto> result = restTemplate.postForEntity(uri, data,
                 GetKakaoOauthTokenResponseDto.class);
+
         if (result.getStatusCode() != HttpStatus.OK) {
             return null;
         }
-        String token = result.getBody().getAccess_token();
+        GetKakaoOauthTokenResponseDto token_getbody = result.getBody();
+        if (token_getbody == null) return null;
+
+        String token = token_getbody.getAccess_token();
+
         return kakaoLogin(token);
     }
 

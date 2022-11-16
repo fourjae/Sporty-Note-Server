@@ -64,7 +64,7 @@ public class NoteNodeController {
     @PostMapping("/set")
     public ResponseEntity<?> addNoteNodeSet(@RequestBody NodeSetCreateDto nodeCreateDto){
         result = (noteService.addNoteNodeSet(nodeCreateDto)) ? "success" : "failed";
-        status_code = result == "success" ? 201 : 200;
+        status_code = "success".equals(result) ? 201 : 200;
         return ResponseEntity.status(HttpStatus.valueOf(status_code)).body(result);
     }
 
@@ -72,7 +72,7 @@ public class NoteNodeController {
     @PutMapping("/set")
     public ResponseEntity<?> updateNoteNodeSet(@RequestBody NodeUpdateDto nodeDto){
         result = (noteService.updateNoteNodeSet(nodeDto)) ? "success" : "failed";
-        status_code = result == "success" ? 201 : 200;
+        status_code = "success".equals(result) ? 201 : 200;
         return ResponseEntity.status(HttpStatus.valueOf(status_code)).body(result);
     }
 
@@ -80,7 +80,7 @@ public class NoteNodeController {
     @DeleteMapping("/set")
     public ResponseEntity<?> deleteNoteNodeSet(@RequestParam("note_node_idx") Long nodeIdx){
         result = (noteService.deleteNoteNodeSet(nodeIdx)) ? "success" : "failed";
-        status_code = result == "success" ? 201 : 200;
+        status_code = "success".equals(result) ? 201 : 200;
         return ResponseEntity.status(HttpStatus.valueOf(status_code)).body(result);
     }
 }

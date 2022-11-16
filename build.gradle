@@ -9,6 +9,9 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 	id 'java'
+
+//	id "org.sonarqube" version "3.4.0.2513"
+
 }
 
 group = 'com.sportynote'

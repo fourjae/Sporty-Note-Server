@@ -18,19 +18,19 @@ public class NodeLocationSetRepository {
         em.persist(ns);
     }
 
-    public Optional<NodeLocationSet> findByMachineIdAndNodeType(Long machineId, NodeType nodeType){
-        Optional<NodeLocationSet> optNLS = null;
-        try{
-            optNLS = Optional.ofNullable(em.createQuery("select ns from NodeLocationSet ns "+
-                            "where ns.machine.idx =: machineId " +
-                            "and ns.nodeType =: nodeType"
+    public Optional<NodeLocationSet> findByMachineIdAndNodeType(Long machineId, NodeType nodeType) {
+        Optional<NodeLocationSet> optNLS = Optional.empty();
+        try {
+            optNLS = Optional.ofNullable(em.createQuery("select ns from NodeLocationSet ns " +
+                                    "where ns.machine.idx =: machineId " +
+                                    "and ns.nodeType =: nodeType"
                             , NodeLocationSet.class)
                     .setParameter("machineId", machineId)
                     .setParameter("nodeType", nodeType)
                     .getSingleResult());
-        }catch (NoResultException e){
+        } catch (NoResultException e) {
             optNLS = Optional.empty();
-        }finally {
-            return optNLS;
-        }}
+        }
+        return optNLS;
+    }
 }

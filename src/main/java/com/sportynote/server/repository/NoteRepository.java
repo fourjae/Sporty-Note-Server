@@ -17,15 +17,18 @@ import java.util.*;
 @RequiredArgsConstructor
 public class NoteRepository {
     private final EntityManager em;
+
     public void save(Note note) {
         em.persist(note);
     }
+
     private final JPAQueryFactory jpaQueryFactory;
     QNote qNote = new QNote("m");
 
-    public Optional<Note> findById(Long noteIdx){
+    public Optional<Note> findById(Long noteIdx) {
         return Optional.ofNullable(em.find(Note.class, noteIdx));
     }
+
     /**
      * 내가 만든 노트가 있는 기구들만 호출
      */
@@ -62,7 +65,7 @@ public class NoteRepository {
     }
 
     public Optional<Note> findByIds(String userId, Long machineId) {
-        Optional<Note> note = null;
+        Optional<Note> note = Optional.empty();
         try {
             note = Optional.ofNullable(em.createQuery("select n from Note n " +
                             "where n.userBasic.userId=:userId " +
@@ -73,9 +76,8 @@ public class NoteRepository {
                     .getSingleResult());
         } catch (NoResultException e) {
             note = Optional.empty();
-        } finally {
-            return note;
         }
+        return note;
     }
 
     public NoteDto findMyNoteNodes(String userId, Long machineId) {
@@ -93,12 +95,12 @@ public class NoteRepository {
         NoteDto noteDto = new NoteDto();
 
         //1. 머신에 대한 기본 정보
-        if(resultList.size()==0) {//해당하는 노트가 없는경우(미생성)
+        if (resultList.size() == 0) {//해당하는 노트가 없는경우(미생성)
             noteDto.setNodeDtos(new HashMap<>());
             return noteDto;
         }
         Machine machine = resultList.get(0).getNote().getMachine();
-        MachineDto machineDto = new MachineDto(machine.getIdx(), machine.getKrMachineName(),machine.getEngMachineName(),
+        MachineDto machineDto = new MachineDto(machine.getIdx(), machine.getKrMachineName(), machine.getEngMachineName(),
                 machine.getTargetArea(), machine.getImageUrl1(), machine.getImageUrl2(), machine.getVideoUrl1());
 
         //2. "노드"들에 대한 기본 정보
