@@ -42,6 +42,13 @@
 
 <br>
 
+## ✅  데이터베이스 구조
+![sporty note ERD](https://user-images.githubusercontent.com/47708717/206942187-f2fcfe87-d1be-4ff7-a5c7-5c87873f9374.png)
+
+
+
+<br>
+
 ## 구현 기능
 
 ### 기능 1
